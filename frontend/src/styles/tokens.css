@@ -1,0 +1,188 @@
+/* ─────────────────────────────────────────────
+   Pato Jack — Design Tokens
+   ───────────────────────────────────────────── */
+
+:root {
+  /* ── Palette ───────────────────────────────── */
+  --color-gold:        #E1AF66;
+  --color-gold-light:  #F4D293;
+  --color-olive:       #697255;
+  --color-forest:      #393F31;
+  --color-cream:       #EADDC5;
+  --color-cream-dim:   #D6CAB5;  /* cream 12% darker — card surfaces */
+  --color-bark:        #2B2320;
+
+  /* ── Semantic surfaces ─────────────────────── */
+  --surface-page:      var(--color-cream);
+  --surface-card:      #F2EBD9;  /* between cream and white */
+  --surface-overlay:   rgba(43, 35, 32, 0.4);
+
+  /* ── Text ─────────────────────────────────── */
+  --text-primary:      var(--color-bark);
+  --text-secondary:    #5A4A44;
+  --text-muted:        #8C7B74;
+  --text-inverse:      var(--color-cream);
+
+  /* ── Status — semantic tokens ──────────────── */
+  --status-in-transit-ok-bg:      rgba(105, 114, 85, 0.12);
+  --status-in-transit-ok-text:    #4A5232;
+  --status-in-transit-ok-border:  rgba(105, 114, 85, 0.3);
+
+  --status-in-transit-late-bg:    rgba(225, 175, 102, 0.15);
+  --status-in-transit-late-text:  #7A5718;
+  --status-in-transit-late-border: rgba(225, 175, 102, 0.4);
+
+  --status-delivered-ok-bg:       rgba(57, 63, 49, 0.1);
+  --status-delivered-ok-text:     var(--color-forest);
+  --status-delivered-ok-border:   rgba(57, 63, 49, 0.25);
+
+  --status-delivered-late-bg:     rgba(43, 35, 32, 0.08);
+  --status-delivered-late-text:   var(--color-bark);
+  --status-delivered-late-border: rgba(43, 35, 32, 0.2);
+
+  --status-waiting-bg:            rgba(234, 221, 197, 0.6);
+  --status-waiting-text:          var(--text-secondary);
+  --status-waiting-border:        var(--color-cream-dim);
+
+  /* ── Typography ────────────────────────────── */
+  --font-display:  'Fraunces', Georgia, serif;
+  --font-body:     'Urbanist', system-ui, sans-serif;
+
+  /* Type scale (rem / fluid) */
+  --text-2xs:  0.6875rem;   /* 11px — sub-labels */
+  --text-xs:   0.75rem;     /* 12px — captions */
+  --text-sm:   0.875rem;    /* 14px — table data, small labels */
+  --text-base: 1rem;        /* 16px — body */
+  --text-lg:   1.125rem;    /* 18px — card values */
+  --text-xl:   1.25rem;     /* 20px — section headers */
+  --text-2xl:  1.5rem;      /* 24px — page title */
+  --text-3xl:  1.875rem;    /* 30px — KPI numbers */
+  --text-4xl:  2.25rem;     /* 36px — hero metrics */
+
+  /* Font weights */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* Line heights */
+  --leading-tight:  1.2;
+  --leading-snug:   1.35;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* Letter spacing */
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.04em;
+  --tracking-wider:   0.08em;
+
+  /* ── Spacing (8px base) ────────────────────── */
+  --space-1:  0.25rem;   /* 4px  */
+  --space-2:  0.5rem;    /* 8px  */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+
+  /* ── Border radius ─────────────────────────── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ─────────────────────────────────*/
+  --shadow-xs:    0 1px 2px rgba(43, 35, 32, 0.06);
+  --shadow-sm:    0 1px 3px rgba(43, 35, 32, 0.08), 0 1px 2px rgba(43, 35, 32, 0.05);
+  --shadow-md:    0 4px 12px rgba(43, 35, 32, 0.1), 0 2px 4px rgba(43, 35, 32, 0.06);
+  --shadow-lg:    0 12px 32px rgba(43, 35, 32, 0.14), 0 4px 8px rgba(43, 35, 32, 0.08);
+  --shadow-modal: 0 20px 60px rgba(43, 35, 32, 0.22);
+
+  /* ── Border ───────────────────────────────── */
+  --border-color:       rgba(43, 35, 32, 0.12);
+  --border-color-focus: var(--color-gold);
+
+  /* ── Transitions ──────────────────────────── */
+  --transition-fast:   150ms ease;
+  --transition-base:   200ms ease;
+  --transition-slow:   300ms ease;
+
+  /* ── Layout ───────────────────────────────── */
+  --sidebar-width:     240px;
+  --content-max-width: 1280px;
+  --header-height:     64px;
+}
+
+/* ── Global base ───────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--surface-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fraunces display headings — use opsz axis for optical correctness */
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  font-variation-settings: 'opsz' 144; /* display optical size */
+}
+
+h3, h4 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  font-variation-settings: 'opsz' 24; /* text optical size */
+}
+
+h5, h6 {
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+a {
+  color: var(--color-forest);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Accessible focus */
+:focus-visible {
+  outline: 2px solid var(--border-color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
