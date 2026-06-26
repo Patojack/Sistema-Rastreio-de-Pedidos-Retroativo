@@ -1,0 +1,21 @@
+# Claude Code local state
+.claude/ralph-loop.local.md
+.claude/settings.local.json
+
+# Claude execution prompts (not source code)
+PROMPT_*.md
+
+# N8N workflows (managed separately)
+*.json
+!frontend/package.json
+!frontend/package-lock.json
+!frontend/tsconfig*.json
+!frontend/.oxlintrc.json
+!vercel.json
+!api/**/*.json
+
+# Frontend build artifacts (also covered by frontend/.gitignore)
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
