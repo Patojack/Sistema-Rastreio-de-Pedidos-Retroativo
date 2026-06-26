@@ -1,0 +1,11 @@
+{
+  "name": "rastreio-pato-jack",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "googleapis": "^144.0.0"
+  },
+  "devDependencies": {
+    "@vercel/node": "^5.0.0"
+  }
+}
