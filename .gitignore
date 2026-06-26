@@ -7,6 +7,8 @@ PROMPT_*.md
 
 # N8N workflows (managed separately)
 *.json
+!package.json
+!package-lock.json
 !frontend/package.json
 !frontend/package-lock.json
 !frontend/tsconfig*.json
@@ -14,8 +16,15 @@ PROMPT_*.md
 !vercel.json
 !api/**/*.json
 
-# Frontend build artifacts (also covered by frontend/.gitignore)
+# Dependencies
+node_modules/
 frontend/node_modules/
+
+# Build artifacts
 frontend/dist/
+
+# Environment files
 frontend/.env
 frontend/.env.local
+.env
+.env.local
