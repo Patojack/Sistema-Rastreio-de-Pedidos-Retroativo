@@ -2,9 +2,10 @@ import { useState, useMemo, type FC } from 'react'
 import { Card } from '@/components/Card/Card'
 import { FilterBar } from '@/components/FilterBar/FilterBar'
 import { OrdersTable } from '@/components/OrdersTable/OrdersTable'
+import { OrderModal } from '@/components/OrderModal/OrderModal'
 import { useSheetData } from '@/hooks/useSheetData'
 import { applyFilters, calcMetrics } from '@/lib/orders'
-import type { Filters } from '@/types/pedido'
+import type { Filters, Pedido } from '@/types/pedido'
 import './Dashboard.css'
 
 const EMPTY_FILTERS: Filters = { transportadora: '', status: '', search: '' }
@@ -40,6 +41,7 @@ function ErrorState({ onRetry }: ErrorStateProps) {
 export const DashboardPage: FC = () => {
   const { pedidos, isLoading, isError, refetch } = useSheetData()
   const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS)
+  const [selectedPedido, setSelectedPedido] = useState<Pedido | null>(null)
 
   const metrics = useMemo(() => calcMetrics(pedidos), [pedidos])
   const filteredPedidos = useMemo(() => applyFilters(pedidos, filters), [pedidos, filters])
@@ -79,9 +81,11 @@ export const DashboardPage: FC = () => {
       ) : (
         <>
           <FilterBar filters={filters} onChange={setFilters} />
-          <OrdersTable pedidos={filteredPedidos} />
+          <OrdersTable pedidos={filteredPedidos} onSelectPedido={setSelectedPedido} />
         </>
       )}
+
+      <OrderModal pedido={selectedPedido} onClose={() => setSelectedPedido(null)} />
     </div>
   )
 }
