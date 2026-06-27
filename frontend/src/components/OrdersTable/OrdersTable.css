@@ -1,0 +1,163 @@
+.orders-table__wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  background-color: var(--surface-card);
+}
+
+/* ── Header ─────────────────────────────── */
+.orders-table thead tr {
+  border-bottom: 2px solid var(--border-color);
+}
+
+.orders-table thead th {
+  background-color: var(--color-forest);
+  color: rgba(234, 221, 197, 0.8);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.orders-table__th-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.orders-table__th-btn:hover {
+  color: var(--color-gold);
+}
+
+.orders-table__sort-icon {
+  font-size: 0.65rem;
+  line-height: 1;
+}
+
+.orders-table__sort-icon--inactive {
+  opacity: 0.3;
+}
+
+.orders-table__sort-icon--active {
+  color: var(--color-gold);
+}
+
+/* ── Body rows ──────────────────────────── */
+.orders-table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color var(--transition-fast);
+}
+
+.orders-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.orders-table tbody tr:hover {
+  background-color: rgba(225, 175, 102, 0.05);
+  cursor: default;
+}
+
+.orders-table td {
+  padding: var(--space-3) var(--space-4);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+/* ── Cell variants ─────────────────────── */
+.orders-table__cell--numero {
+  font-weight: var(--weight-medium);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.orders-table__cell--carrier {
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.orders-table__cell--date {
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Dias atraso ────────────────────────── */
+.orders-table__dias {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-medium);
+  font-size: var(--text-xs);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.orders-table__dias--late {
+  color: var(--status-in-transit-late-text);
+  background-color: var(--status-in-transit-late-bg);
+}
+
+.orders-table__dias--ok {
+  color: var(--status-in-transit-ok-text);
+  background-color: var(--status-in-transit-ok-bg);
+}
+
+/* ── Empty state ─────────────────────────── */
+.orders-table__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16) var(--space-8);
+  gap: var(--space-2);
+  text-align: center;
+}
+
+.orders-table__empty-icon {
+  font-size: var(--text-4xl);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.orders-table__empty-title {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+.orders-table__empty-hint {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* ── Responsive ─────────────────────────── */
+@media (max-width: 768px) {
+  .orders-table__col--hide-mobile {
+    display: none;
+  }
+
+  .orders-table td,
+  .orders-table__th-btn {
+    padding: var(--space-3) var(--space-3);
+  }
+}
