@@ -12,7 +12,7 @@ async function fetchPedidos(): Promise<Pedido[]> {
 }
 
 export function useSheetData() {
-  const { data, isLoading, isError, dataUpdatedAt } = useQuery({
+  const { data, isLoading, isError, dataUpdatedAt, refetch } = useQuery({
     queryKey: ['pedidos'],
     queryFn: fetchPedidos,
     staleTime: FIVE_MINUTES,
@@ -23,6 +23,7 @@ export function useSheetData() {
     pedidos: data ?? [],
     isLoading,
     isError,
+    refetch,
     lastUpdated: dataUpdatedAt ? new Date(dataUpdatedAt) : null,
   }
 }
