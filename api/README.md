@@ -1,18 +1,18 @@
 # api/
 
-Vercel Serverless Functions for the Pato Jack order tracking dashboard.
+Vercel Serverless Functions do dashboard de rastreio de pedidos da Pato Jack.
 
-Each `.ts` file here becomes a serverless endpoint automatically deployed by Vercel.
+Cada arquivo `.ts` aqui se torna um endpoint serverless implantado automaticamente pela Vercel.
 
 ## Endpoints
 
 ### `GET /api/pedidos`
 
-Reads the "Rastreio Pato Jack" Google Sheet (tab: Pedidos) and returns normalized order data as JSON.
+Lê a planilha "Rastreio Pato Jack" (aba: Pedidos) e retorna os dados de pedidos normalizados em JSON.
 
-Credentials stay server-side via a Service Account. The React client never touches the Sheets API directly.
+As credenciais ficam exclusivamente no servidor via Service Account. O cliente React nunca acessa a Sheets API diretamente.
 
-**Response — array of `Pedido`:**
+**Resposta — array de `Pedido`:**
 ```json
 [
   {
@@ -30,40 +30,40 @@ Credentials stay server-side via a Service Account. The React client never touch
 ]
 ```
 
-## Testing locally with `vercel dev`
+## Testando localmente com `vercel dev`
 
-### Prerequisites
+### Pré-requisitos
 
-1. Install the Vercel CLI globally:
+1. Instalar o Vercel CLI globalmente:
    ```bash
    npm i -g vercel
    ```
 
-2. Create a `.env` file at the project root (never commit it):
+2. Criar um arquivo `.env` na raiz do projeto (nunca commitar):
    ```env
    GOOGLE_SERVICE_ACCOUNT_KEY={"type":"service_account","client_email":"...","private_key":"-----BEGIN PRIVATE KEY-----\n..."}
    SHEET_ID=1sZFs-AWYny0G5bA0-PoriKpLGso42LDZkqCp7gHxBWU
    SHEET_TAB_NAME=Pedidos
    ```
-   The `GOOGLE_SERVICE_ACCOUNT_KEY` value must be the full Service Account JSON as a single-line string.
+   O valor de `GOOGLE_SERVICE_ACCOUNT_KEY` deve ser o JSON completo da Service Account em uma única linha.
 
-3. Link the project to Vercel (first time only):
+3. Vincular o projeto à Vercel (apenas na primeira vez):
    ```bash
    vercel link
    ```
 
-### Running
+### Executando
 
-From the project root:
+A partir da raiz do projeto:
 ```bash
 vercel dev
 ```
 
-This starts both the Vercel Function runtime (for `api/`) and the Vite dev server (for `frontend/`), proxied together on `http://localhost:3000`.
+Isso inicia o runtime das Vercel Functions (para `api/`) e o servidor de desenvolvimento Vite (para `frontend/`), ambos proxiados em `http://localhost:3000`.
 
-Test the endpoint directly:
+Testar o endpoint diretamente:
 ```bash
 curl http://localhost:3000/api/pedidos
 ```
 
-Expected: JSON array. If env vars are missing, returns `{ "error": "Missing required env vars: ..." }`.
+Resposta esperada: array JSON. Se as variáveis de ambiente estiverem ausentes, retorna `{ "error": "Missing required env vars: ..." }`.
