@@ -14,6 +14,7 @@ interface SortState {
 
 interface OrdersTableProps {
   pedidos: Pedido[]
+  onSelectPedido: (pedido: Pedido) => void
 }
 
 function formatDate(dateStr: string): string {
@@ -44,7 +45,7 @@ function sortPedidos(pedidos: Pedido[], sort: SortState): Pedido[] {
   })
 }
 
-export const OrdersTable: FC<OrdersTableProps> = ({ pedidos }) => {
+export const OrdersTable: FC<OrdersTableProps> = ({ pedidos, onSelectPedido }) => {
   const [sort, setSort] = useState<SortState>({ column: 'diasAtraso', direction: 'desc' })
 
   const sorted = useMemo(() => sortPedidos(pedidos, sort), [pedidos, sort])
@@ -122,7 +123,12 @@ export const OrdersTable: FC<OrdersTableProps> = ({ pedidos }) => {
           {sorted.map((p) => {
             const dias = calcDiasAtraso(p.prazoEntrega)
             return (
-              <tr key={p.numero} className="orders-table__row">
+              <tr
+                key={p.numero}
+                className="orders-table__row orders-table__row--clickable"
+                onClick={() => onSelectPedido(p)}
+                aria-label={`Ver detalhes do pedido Nº ${p.numero}`}
+              >
                 <td className="orders-table__cell--numero">{p.numero}</td>
                 <td>{p.cliente || '—'}</td>
                 <td className="orders-table__col--hide-mobile orders-table__cell--carrier">

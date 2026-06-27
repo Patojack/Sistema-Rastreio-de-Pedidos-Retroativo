@@ -77,6 +77,14 @@
   cursor: default;
 }
 
+.orders-table__row--clickable {
+  cursor: pointer;
+}
+
+.orders-table__row--clickable:hover {
+  background-color: rgba(225, 175, 102, 0.1);
+}
+
 .orders-table td {
   padding: var(--space-3) var(--space-4);
   color: var(--text-primary);
