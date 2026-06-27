@@ -11,6 +11,10 @@
   gap: var(--space-4);
 }
 
+.dashboard__cards > * {
+  min-width: 0;
+}
+
 @media (max-width: 1024px) {
   .dashboard__cards {
     grid-template-columns: repeat(2, 1fr);
