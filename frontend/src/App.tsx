@@ -1,14 +1,7 @@
 import { Header } from '@/components/Header/Header'
 import { AppLayout } from '@/layouts/AppLayout/AppLayout'
+import { DashboardPage } from '@/pages/Dashboard/Dashboard'
 import { useSheetData } from '@/hooks/useSheetData'
-
-function DashboardPlaceholder() {
-  return (
-    <div style={{ padding: 'var(--space-4)', color: 'var(--text-secondary)', fontSize: 'var(--text-sm)' }}>
-      Dashboard — Fase 4
-    </div>
-  )
-}
 
 function MetricsPlaceholder() {
   return (
@@ -24,7 +17,7 @@ export default function App() {
   return (
     <AppLayout
       header={<Header isLoading={isLoading} lastUpdated={lastUpdated} />}
-      dashboardPage={<DashboardPlaceholder />}
+      dashboardPage={<DashboardPage />}
       metricsPage={<MetricsPlaceholder />}
     />
   )
