@@ -19,3 +19,9 @@ export type Pedido = {
   dataEntrega: string
   ultimaAtualizacao: string
 }
+
+export type Filters = {
+  transportadora: string
+  status: string
+  search: string
+}
