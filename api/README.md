@@ -67,3 +67,28 @@ curl http://localhost:3000/api/pedidos
 ```
 
 Resposta esperada: array JSON. Se as variáveis de ambiente estiverem ausentes, retorna `{ "error": "Missing required env vars: ..." }`.
+
+## Deploy na Vercel
+
+### Variáveis de ambiente obrigatórias
+
+Configure as seguintes variáveis em **Settings > Environment Variables** no dashboard da Vercel:
+
+| Variável | Descrição |
+|---|---|
+| `GOOGLE_SERVICE_ACCOUNT_KEY` | JSON completo da Service Account em **uma única linha** (sem quebras de linha reais) |
+| `SHEET_ID` | ID da planilha Google Sheets (encontrado na URL entre `/d/` e `/edit`) |
+| `SHEET_TAB_NAME` | Nome da aba na planilha — padrão: `Pedidos` |
+
+> **Atenção:** O valor de `GOOGLE_SERVICE_ACCOUNT_KEY` deve ser o JSON inteiro em uma única linha. As quebras de linha dentro do `private_key` devem ser representadas como `\n` (literal), não como quebras reais. Exemplo:
+>
+> ```
+> {"type":"service_account","client_email":"nome@projeto.iam.gserviceaccount.com","private_key":"-----BEGIN PRIVATE KEY-----\nMIIE...\n-----END PRIVATE KEY-----\n",...}
+> ```
+
+### Passos
+
+1. No dashboard da Vercel, vá em **Settings > Environment Variables**
+2. Adicione as 3 variáveis acima com escopo `Production` (e `Preview` se necessário)
+3. Faça um novo deploy (ou triggere via push) para que as variáveis sejam aplicadas
+4. Teste chamando `https://seu-dominio.vercel.app/api/pedidos`
