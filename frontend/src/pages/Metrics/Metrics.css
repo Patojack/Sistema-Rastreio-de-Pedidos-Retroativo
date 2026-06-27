@@ -48,6 +48,10 @@
   }
 }
 
+.metrics__summary-cards > * {
+  min-width: 0;
+}
+
 .metrics__summary-card {
   display: flex;
   flex-direction: column;
@@ -82,6 +86,10 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-4);
+}
+
+.metrics__charts-row > * {
+  min-width: 0;
 }
 
 @media (max-width: 768px) {
