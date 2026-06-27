@@ -73,6 +73,7 @@ export const MetricsPage: FC = () => {
             className={`metrics__period-btn${period === value ? ' metrics__period-btn--active' : ''}`}
             onClick={() => setPeriod(value)}
             type="button"
+            aria-pressed={period === value}
           >
             {label}
           </button>
@@ -95,7 +96,7 @@ export const MetricsPage: FC = () => {
       </div>
 
       <div className="metrics__charts-row">
-        <div className="metrics__chart-card">
+        <div className="metrics__chart-card" aria-label="Gráfico de volume de pedidos por transportadora">
           <h3 className="metrics__chart-title">Volume por Transportadora</h3>
           <div className="metrics__chart-container">
             <ResponsiveContainer width="100%" height="100%">
@@ -126,7 +127,7 @@ export const MetricsPage: FC = () => {
           </div>
         </div>
 
-        <div className="metrics__chart-card">
+        <div className="metrics__chart-card" aria-label="Gráfico de distribuição de status dos pedidos">
           <h3 className="metrics__chart-title">Distribuição de Status</h3>
           <div className="metrics__chart-container">
             <ResponsiveContainer width="100%" height="100%">
@@ -166,7 +167,7 @@ export const MetricsPage: FC = () => {
         <div className="metrics__table-card">
           <h3 className="metrics__chart-title">% no Prazo por Transportadora</h3>
           <div className="metrics__table-wrapper">
-            <table className="metrics__table">
+            <table className="metrics__table" aria-label="Percentual de entregas no prazo por transportadora">
               <thead>
                 <tr>
                   <th>Transportadora</th>
