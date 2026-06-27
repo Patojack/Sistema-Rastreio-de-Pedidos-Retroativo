@@ -20,7 +20,7 @@
   /* ── Text ─────────────────────────────────── */
   --text-primary:      var(--color-bark);
   --text-secondary:    #5A4A44;
-  --text-muted:        #8C7B74;
+  --text-muted:        #6B5952;  /* darkened from #8C7B74 for WCAG AA (4.5:1 vs --surface-card) */
   --text-inverse:      var(--color-cream);
 
   /* ── Status — semantic tokens ──────────────── */
