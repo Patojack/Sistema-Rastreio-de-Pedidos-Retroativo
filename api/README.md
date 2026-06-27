@@ -30,6 +30,21 @@ As credenciais ficam exclusivamente no servidor via Service Account. O cliente R
 ]
 ```
 
+### `GET /api/pedidos-supabase`
+
+Lê os pedidos da tabela `pedidos` no Supabase (Postgres) e retorna **exatamente o mesmo contrato JSON** de `/api/pedidos`. Endpoint paralelo para migração gradual — não altera nem substitui o endpoint do Google Sheets.
+
+**Variáveis de ambiente necessárias:**
+
+| Variável | Descrição |
+|---|---|
+| `SUPABASE_URL` | Project URL do Supabase (ex: `https://<project-id>.supabase.co`) |
+| `SUPABASE_SECRET_KEY` | Secret key do Supabase — usada exclusivamente server-side, nunca exposta ao browser |
+
+Implementação usa `fetch` nativo para a REST API do Supabase (`/rest/v1/pedidos`). O campo `status` já é gravado pelo N8N como `StatusCategoria`, portanto não há mapeamento de labels.
+
+---
+
 ## Testando localmente com `vercel dev`
 
 ### Pré-requisitos
@@ -42,7 +57,7 @@ As credenciais ficam exclusivamente no servidor via Service Account. O cliente R
 2. Criar um arquivo `.env` na raiz do projeto (nunca commitar):
    ```env
    GOOGLE_SERVICE_ACCOUNT_KEY={"type":"service_account","client_email":"...","private_key":"-----BEGIN PRIVATE KEY-----\n..."}
-   SHEET_ID=1sZFs-AWYny0G5bA0-PoriKpLGso42LDZkqCp7gHxBWU
+   SHEET_ID=<id da planilha>
    SHEET_TAB_NAME=Pedidos
    ```
    O valor de `GOOGLE_SERVICE_ACCOUNT_KEY` deve ser o JSON completo da Service Account em uma única linha.
