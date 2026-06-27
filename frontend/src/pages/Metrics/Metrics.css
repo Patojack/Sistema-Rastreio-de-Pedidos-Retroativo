@@ -1,0 +1,209 @@
+.metrics {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ── Period filter ─────────────────────────── */
+.metrics__period-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.metrics__period-btn {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: none;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.metrics__period-btn:hover {
+  background-color: var(--color-cream-dim);
+  color: var(--text-primary);
+}
+
+.metrics__period-btn--active {
+  background-color: var(--color-forest);
+  color: var(--text-inverse);
+  border-color: var(--color-forest);
+}
+
+/* ── Summary cards ─────────────────────────── */
+.metrics__summary-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 480px) {
+  .metrics__summary-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.metrics__summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-6);
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.metrics__summary-label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.metrics__summary-value {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  font-variation-settings: 'opsz' 144;
+}
+
+/* ── Charts row ────────────────────────────── */
+.metrics__charts-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .metrics__charts-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.metrics__chart-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.metrics__chart-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  font-variation-settings: 'opsz' 24;
+}
+
+.metrics__chart-container {
+  height: 260px;
+  width: 100%;
+}
+
+/* ── Breakdown table ───────────────────────── */
+.metrics__table-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.metrics__table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.metrics__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.metrics__table thead th {
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-forest);
+  color: rgba(234, 221, 197, 0.8);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.metrics__table thead th:not(:first-child) {
+  text-align: right;
+}
+
+.metrics__table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color var(--transition-fast);
+}
+
+.metrics__table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.metrics__table tbody tr:hover {
+  background-color: rgba(225, 175, 102, 0.05);
+}
+
+.metrics__table td {
+  padding: var(--space-3) var(--space-4);
+  color: var(--text-primary);
+  vertical-align: middle;
+  text-align: right;
+}
+
+.metrics__table td:first-child {
+  text-align: left;
+}
+
+.metrics__table-carrier {
+  font-weight: var(--weight-medium);
+  text-transform: capitalize;
+}
+
+.metrics__table tfoot tr {
+  border-top: 2px solid var(--border-color);
+  background-color: var(--surface-page);
+}
+
+.metrics__table tfoot td {
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+/* ── Taxa badge ────────────────────────────── */
+.metrics__taxa {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-medium);
+}
+
+.metrics__taxa--good {
+  color: var(--color-olive);
+}
+
+.metrics__taxa--bad {
+  color: var(--color-gold);
+}
