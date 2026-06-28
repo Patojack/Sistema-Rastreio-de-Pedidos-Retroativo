@@ -4,7 +4,7 @@ import type { Pedido } from '@/types/pedido'
 const FIVE_MINUTES = 5 * 60 * 1000
 
 async function fetchPedidos(): Promise<Pedido[]> {
-  const res = await fetch('/api/pedidos')
+  const res = await fetch('/api/pedidos-supabase')
   if (!res.ok) {
     throw new Error(`Failed to fetch orders: ${res.status} ${res.statusText}`)
   }
