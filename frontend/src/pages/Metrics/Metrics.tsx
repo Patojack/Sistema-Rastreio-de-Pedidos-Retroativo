@@ -119,7 +119,7 @@ export const MetricsPage: FC = () => {
                 <Tooltip
                   contentStyle={TOOLTIP_STYLE}
                   cursor={CURSOR_STYLE}
-                  formatter={(value) => [value ?? 0, 'Pedidos']}
+                  formatter={(value: number | string) => [value, 'Pedidos']}
                 />
                 <Bar dataKey="value" name="Pedidos" fill="#E1AF66" radius={[4, 4, 0, 0]} />
               </BarChart>
@@ -147,7 +147,7 @@ export const MetricsPage: FC = () => {
                 </Pie>
                 <Tooltip
                   contentStyle={TOOLTIP_STYLE}
-                  formatter={(value, name) => [value ?? 0, name]}
+                  formatter={(value: number | string, name: number | string) => [value, name]}
                 />
                 <Legend
                   iconType="circle"
