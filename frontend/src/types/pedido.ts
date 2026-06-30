@@ -24,4 +24,6 @@ export type Filters = {
   transportadora: string
   status: string
   search: string
+  dataInicio: string
+  dataFim: string
 }
