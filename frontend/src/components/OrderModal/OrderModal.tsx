@@ -88,7 +88,8 @@ export const OrderModal: FC<OrderModalProps> = ({ pedido, onClose }) => {
 
   if (!pedido) return null
 
-  const dias = calcDiasAtraso(pedido.prazoEntrega)
+  const isEntregue = pedido.status === 'entregue_prazo' || pedido.status === 'entregue_atrasado'
+  const dias = calcDiasAtraso(pedido.prazoEntrega, isEntregue ? pedido.dataEntrega : undefined)
   const carrierKey = pedido.transportadora?.toLowerCase().trim() ?? ''
   const trackingLink = TRACKING_LINKS[carrierKey]
 
