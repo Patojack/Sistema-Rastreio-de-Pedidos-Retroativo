@@ -56,7 +56,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       })
     }
 
-    const rows: SupabasePedido[] = await response.json()
+    const raw: SupabasePedido[] = await response.json()
+
+    // Deduplica por numero mantendo ultima_atualizacao mais recente (fallback)
+    const seen = new Map<string, SupabasePedido>()
+    for (const row of raw) {
+      const key = row.numero ?? String(row.id)
+      const existing = seen.get(key)
+      if (!existing || (row.ultima_atualizacao ?? '') > (existing.ultima_atualizacao ?? '')) {
+        seen.set(key, row)
+      }
+    }
+    const rows = Array.from(seen.values())
 
     const pedidos = rows.map((row) => ({
       numero:            toStr(row.numero),
