@@ -27,7 +27,7 @@ export function calcAvgDelay(pedidos: Pedido[]): number {
     (p) => p.status === 'em_rota_atrasado' || p.status === 'entregue_atrasado',
   )
   if (atrasados.length === 0) return 0
-  const total = atrasados.reduce((sum, p) => sum + calcDiasAtraso(p.prazoEntrega), 0)
+  const total = atrasados.reduce((sum, p) => sum + calcDiasAtraso(p.prazoEntrega, p.status === 'entregue_atrasado' ? p.dataEntrega : undefined), 0)
   return Math.round(total / atrasados.length)
 }
 
