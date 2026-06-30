@@ -4,6 +4,67 @@
   gap: var(--space-6);
 }
 
+/* ── Filters row ───────────────────────────── */
+.metrics__filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.metrics__daterange {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.metrics__date {
+  height: 36px;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  padding: 0 var(--space-3);
+  outline: none;
+  cursor: pointer;
+  width: 140px;
+  transition: border-color var(--transition-fast);
+}
+
+.metrics__date:focus {
+  border-color: var(--color-gold);
+}
+
+.metrics__date::-webkit-calendar-picker-indicator {
+  filter: invert(60%);
+  cursor: pointer;
+}
+
+.metrics__datesep {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  user-select: none;
+}
+
+.metrics__date-clear {
+  height: 36px;
+  padding: 0 var(--space-3);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.metrics__date-clear:hover {
+  background-color: var(--color-cream-dim);
+}
+
 /* ── Period filter ─────────────────────────── */
 .metrics__period-filter {
   display: flex;
