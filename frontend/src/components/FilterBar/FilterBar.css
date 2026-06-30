@@ -54,6 +54,43 @@
   color: var(--text-muted);
 }
 
+.filter-bar__daterange {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.filter-bar__date {
+  height: 38px;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  padding: 0 var(--space-3);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+  cursor: pointer;
+  width: 140px;
+}
+
+.filter-bar__date:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(225, 175, 102, 0.15);
+}
+
+.filter-bar__date::-webkit-calendar-picker-indicator {
+  filter: invert(60%);
+  cursor: pointer;
+}
+
+.filter-bar__datesep {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  user-select: none;
+}
+
 .filter-bar__clear {
   height: 38px;
   padding: 0 var(--space-4);
