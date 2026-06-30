@@ -21,7 +21,7 @@ const STATUS_OPTIONS = [
   { value: 'sem_rastreio', label: 'Sem rastreio' },
 ]
 
-const EMPTY_FILTERS: Filters = { transportadora: '', status: '', search: '' }
+const EMPTY_FILTERS: Filters = { transportadora: '', status: '', search: '', dataInicio: '', dataFim: '' }
 
 interface FilterBarProps {
   filters: Filters
@@ -51,7 +51,8 @@ export const FilterBar: FC<FilterBarProps> = ({ filters, onChange }) => {
   }
 
   const isActive =
-    filters.transportadora !== '' || filters.status !== '' || filters.search !== ''
+    filters.transportadora !== '' || filters.status !== '' || filters.search !== '' ||
+    filters.dataInicio !== '' || filters.dataFim !== ''
 
   return (
     <div className="filter-bar">
@@ -86,6 +87,26 @@ export const FilterBar: FC<FilterBarProps> = ({ filters, onChange }) => {
             <option key={o.value} value={o.value}>{o.label}</option>
           ))}
         </select>
+
+        <div className="filter-bar__daterange">
+          <input
+            className="filter-bar__date"
+            type="date"
+            value={filters.dataInicio}
+            onChange={(e) => onChange({ ...filters, dataInicio: e.target.value })}
+            aria-label="Data inicial"
+            title="Data inicial do pedido"
+          />
+          <span className="filter-bar__datesep">—</span>
+          <input
+            className="filter-bar__date"
+            type="date"
+            value={filters.dataFim}
+            onChange={(e) => onChange({ ...filters, dataFim: e.target.value })}
+            aria-label="Data final"
+            title="Data final do pedido"
+          />
+        </div>
       </div>
 
       {isActive && (
