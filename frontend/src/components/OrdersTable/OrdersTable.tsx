@@ -29,8 +29,10 @@ function sortPedidos(pedidos: Pedido[], sort: SortState): Pedido[] {
     let bVal: string | number
 
     if (sort.column === 'diasAtraso') {
-      aVal = calcDiasAtraso(a.prazoEntrega)
-      bVal = calcDiasAtraso(b.prazoEntrega)
+      const aEntregue = a.status === 'entregue_prazo' || a.status === 'entregue_atrasado'
+      const bEntregue = b.status === 'entregue_prazo' || b.status === 'entregue_atrasado'
+      aVal = calcDiasAtraso(a.prazoEntrega, aEntregue ? a.dataEntrega : undefined)
+      bVal = calcDiasAtraso(b.prazoEntrega, bEntregue ? b.dataEntrega : undefined)
     } else {
       aVal = a[sort.column]
       bVal = b[sort.column]
@@ -121,7 +123,8 @@ export const OrdersTable: FC<OrdersTableProps> = ({ pedidos, onSelectPedido }) =
         </thead>
         <tbody>
           {sorted.map((p) => {
-            const dias = calcDiasAtraso(p.prazoEntrega)
+            const isEntregue = p.status === 'entregue_prazo' || p.status === 'entregue_atrasado'
+            const dias = calcDiasAtraso(p.prazoEntrega, isEntregue ? p.dataEntrega : undefined)
             return (
               <tr
                 key={p.numero}
