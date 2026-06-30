@@ -31,6 +31,15 @@ const PERIODS: { label: string; value: Period }[] = [
   { label: 'Todos', value: null },
 ]
 
+function filterByDateRange(pedidos: import('@/types/pedido').Pedido[], from: string, to: string) {
+  return pedidos.filter((p) => {
+    if (!p.dataPedido) return false
+    if (from && p.dataPedido < from) return false
+    if (to && p.dataPedido > to) return false
+    return true
+  })
+}
+
 const TOOLTIP_STYLE = {
   backgroundColor: '#F2EBD9',
   border: '1px solid rgba(43,35,32,0.12)',
@@ -44,8 +53,15 @@ const CURSOR_STYLE = { fill: 'rgba(225,175,102,0.08)' }
 export const MetricsPage: FC = () => {
   const { pedidos, isLoading } = useSheetData()
   const [period, setPeriod] = useState<Period>(30)
+  const [dateFrom, setDateFrom] = useState('')
+  const [dateTo, setDateTo] = useState('')
 
-  const filtered = useMemo(() => filterByPeriod(pedidos, period), [pedidos, period])
+  const hasDateRange = dateFrom !== '' || dateTo !== ''
+
+  const filtered = useMemo(() => {
+    if (hasDateRange) return filterByDateRange(pedidos, dateFrom, dateTo)
+    return filterByPeriod(pedidos, period)
+  }, [pedidos, period, dateFrom, dateTo, hasDateRange])
   const onTimeRate = useMemo(() => calcOnTimeRate(filtered), [filtered])
   const avgDelay = useMemo(() => calcAvgDelay(filtered), [filtered])
   const volumeByCarrier = useMemo(() => calcVolumeByCarrier(filtered), [filtered])
@@ -66,18 +82,46 @@ export const MetricsPage: FC = () => {
 
   return (
     <div className="metrics">
-      <div className="metrics__period-filter" role="group" aria-label="Filtrar por período">
-        {PERIODS.map(({ label, value }) => (
-          <button
-            key={label}
-            className={`metrics__period-btn${period === value ? ' metrics__period-btn--active' : ''}`}
-            onClick={() => setPeriod(value)}
-            type="button"
-            aria-pressed={period === value}
-          >
-            {label}
-          </button>
-        ))}
+      <div className="metrics__filters">
+        <div className="metrics__period-filter" role="group" aria-label="Filtrar por período">
+          {PERIODS.map(({ label, value }) => (
+            <button
+              key={label}
+              className={`metrics__period-btn${period === value && !hasDateRange ? ' metrics__period-btn--active' : ''}`}
+              onClick={() => { setPeriod(value); setDateFrom(''); setDateTo('') }}
+              type="button"
+              aria-pressed={period === value && !hasDateRange}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        <div className="metrics__daterange">
+          <input
+            className="metrics__date"
+            type="date"
+            value={dateFrom}
+            onChange={(e) => setDateFrom(e.target.value)}
+            aria-label="Data inicial"
+          />
+          <span className="metrics__datesep">—</span>
+          <input
+            className="metrics__date"
+            type="date"
+            value={dateTo}
+            onChange={(e) => setDateTo(e.target.value)}
+            aria-label="Data final"
+          />
+          {hasDateRange && (
+            <button
+              className="metrics__date-clear"
+              onClick={() => { setDateFrom(''); setDateTo('') }}
+              type="button"
+            >
+              Limpar
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="metrics__summary-cards">
