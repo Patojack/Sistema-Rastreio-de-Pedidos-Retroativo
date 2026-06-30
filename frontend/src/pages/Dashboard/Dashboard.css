@@ -114,3 +114,76 @@
 .dashboard__error-retry:hover {
   background-color: var(--color-bark);
 }
+
+/* ── Distribution table ─────────────────── */
+.dashboard__distribution {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  overflow-x: auto;
+}
+
+.dashboard__distribution-title {
+  margin: 0 0 var(--space-4) 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dashboard__dist-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.dashboard__dist-table th {
+  padding: var(--space-2) var(--space-4);
+  text-align: left;
+  background-color: var(--color-forest);
+  color: var(--text-inverse);
+  font-weight: var(--weight-semibold);
+}
+
+.dashboard__dist-table th:not(:first-child) {
+  text-align: right;
+}
+
+.dashboard__dist-table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dashboard__dist-table tbody tr:hover {
+  background-color: var(--color-cream-dim);
+}
+
+.dashboard__dist-table td {
+  padding: var(--space-2) var(--space-4);
+  color: var(--text-primary);
+}
+
+.dashboard__dist-table td:not(:first-child) {
+  text-align: right;
+}
+
+.dashboard__dist-row--late td {
+  background-color: var(--status-in-transit-late-bg);
+  color: var(--status-in-transit-late-text);
+}
+
+.dashboard__dist-table tfoot tr {
+  background-color: var(--color-forest);
+}
+
+.dashboard__dist-table tfoot td {
+  padding: var(--space-2) var(--space-4);
+  font-weight: var(--weight-semibold);
+  color: var(--text-inverse);
+  text-align: right;
+}
+
+.dashboard__dist-table tfoot td:first-child {
+  text-align: left;
+}
