@@ -201,7 +201,11 @@ export const OrderModal: FC<OrderModalProps> = ({ pedido, onClose }) => {
           <h3 className="order-modal__timeline-title">Histórico de Eventos</h3>
           <div className="order-modal__timeline-placeholder">
             <span className="order-modal__timeline-icon" aria-hidden="true">🕐</span>
-            <p>Histórico de eventos disponível após integração FM</p>
+            <p>
+              {carrierKey === 'fm'
+                ? 'Histórico de eventos disponível após integração FM'
+                : 'Sem eventos de rastreio disponíveis'}
+            </p>
           </div>
         </div>
       </div>
