@@ -1,0 +1,82 @@
+.rastreio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ── Skeleton loading ───────────────────── */
+.rastreio__skeleton-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.rastreio__skeleton-header {
+  height: 44px;
+  background-color: var(--color-forest);
+  opacity: 0.6;
+}
+
+.rastreio__skeleton-row {
+  height: 52px;
+  background: linear-gradient(
+    90deg,
+    var(--surface-card) 0%,
+    var(--color-cream-dim) 50%,
+    var(--surface-card) 100%
+  );
+  background-size: 200% 100%;
+  animation: rastreio-shimmer 1.4s ease-in-out infinite;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.rastreio__skeleton-row:last-child {
+  border-bottom: none;
+}
+
+@keyframes rastreio-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Error state ────────────────────────── */
+.rastreio__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16) var(--space-8);
+  gap: var(--space-3);
+  text-align: center;
+  background-color: var(--surface-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.rastreio__error-icon { font-size: var(--text-4xl); line-height: 1; }
+.rastreio__error-title {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+.rastreio__error-hint { margin: 0; font-size: var(--text-sm); color: var(--text-muted); }
+
+.rastreio__error-retry {
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-6);
+  background-color: var(--color-forest);
+  color: var(--text-inverse);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.rastreio__error-retry:hover { background-color: var(--color-bark); }

@@ -1,16 +1,28 @@
 import { useState, type FC, type ReactNode } from 'react'
 import './AppLayout.css'
 
-type Page = 'dashboard' | 'metrics'
+type Page = 'dashboard' | 'rastreio' | 'metrics'
 
 interface AppLayoutProps {
   header: ReactNode
   dashboardPage: ReactNode
+  rastreioPag: ReactNode
   metricsPage: ReactNode
 }
 
-export const AppLayout: FC<AppLayoutProps> = ({ header, dashboardPage, metricsPage }) => {
+export const AppLayout: FC<AppLayoutProps> = ({ header, dashboardPage, rastreioPag, metricsPage }) => {
   const [activePage, setActivePage] = useState<Page>('dashboard')
+
+  const navItems: { page: Page; icon: string; label: string }[] = [
+    { page: 'dashboard', icon: '📊', label: 'Dashboard' },
+    { page: 'rastreio',  icon: '📦', label: 'Rastreio'  },
+    { page: 'metrics',   icon: '📈', label: 'Métricas'  },
+  ]
+
+  const currentPage =
+    activePage === 'dashboard' ? dashboardPage :
+    activePage === 'rastreio'  ? rastreioPag   :
+    metricsPage
 
   return (
     <div className="app-layout">
@@ -21,51 +33,41 @@ export const AppLayout: FC<AppLayoutProps> = ({ header, dashboardPage, metricsPa
         </div>
 
         <nav className="app-layout__sidebar-nav">
-          <button
-            className={`app-layout__nav-item${activePage === 'dashboard' ? ' app-layout__nav-item--active' : ''}`}
-            onClick={() => setActivePage('dashboard')}
-            aria-current={activePage === 'dashboard' ? 'page' : undefined}
-          >
-            <span className="app-layout__nav-icon" aria-hidden="true">📊</span>
-            Dashboard
-          </button>
-          <button
-            className={`app-layout__nav-item${activePage === 'metrics' ? ' app-layout__nav-item--active' : ''}`}
-            onClick={() => setActivePage('metrics')}
-            aria-current={activePage === 'metrics' ? 'page' : undefined}
-          >
-            <span className="app-layout__nav-icon" aria-hidden="true">📈</span>
-            Métricas
-          </button>
+          {navItems.map(({ page, icon, label }) => (
+            <button
+              key={page}
+              className={`app-layout__nav-item${activePage === page ? ' app-layout__nav-item--active' : ''}`}
+              onClick={() => setActivePage(page)}
+              aria-current={activePage === page ? 'page' : undefined}
+            >
+              <span className="app-layout__nav-icon" aria-hidden="true">{icon}</span>
+              {label}
+            </button>
+          ))}
         </nav>
 
-        <div className="app-layout__sidebar-footer">v0.1.0</div>
+        <div className="app-layout__sidebar-footer">v0.5.0</div>
       </aside>
 
       <div className="app-layout__content">
         {header}
         <main className="app-layout__main">
-          {activePage === 'dashboard' ? dashboardPage : metricsPage}
+          {currentPage}
         </main>
       </div>
 
       <nav className="app-layout__bottom-nav" aria-label="Navegação principal">
-        <button
-          className={`app-layout__bottom-item${activePage === 'dashboard' ? ' app-layout__bottom-item--active' : ''}`}
-          onClick={() => setActivePage('dashboard')}
-          aria-current={activePage === 'dashboard' ? 'page' : undefined}
-        >
-          <span className="app-layout__nav-icon" aria-hidden="true">📊</span>
-          <span>Dashboard</span>
-        </button>
-        <button
-          className={`app-layout__bottom-item${activePage === 'metrics' ? ' app-layout__bottom-item--active' : ''}`}
-          onClick={() => setActivePage('metrics')}
-          aria-current={activePage === 'metrics' ? 'page' : undefined}
-        >
-          <span className="app-layout__nav-icon" aria-hidden="true">📈</span>
-          <span>Métricas</span>
-        </button>
+        {navItems.map(({ page, icon, label }) => (
+          <button
+            key={page}
+            className={`app-layout__bottom-item${activePage === page ? ' app-layout__bottom-item--active' : ''}`}
+            onClick={() => setActivePage(page)}
+            aria-current={activePage === page ? 'page' : undefined}
+          >
+            <span className="app-layout__nav-icon" aria-hidden="true">{icon}</span>
+            <span>{label}</span>
+          </button>
+        ))}
       </nav>
     </div>
   )
