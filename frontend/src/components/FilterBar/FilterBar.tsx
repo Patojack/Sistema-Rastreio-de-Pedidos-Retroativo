@@ -12,6 +12,7 @@ const CARRIER_OPTIONS = [
 
 const STATUS_OPTIONS = [
   { value: '', label: 'Todos os status' },
+  { value: 'em_rota', label: 'Em rota (todos)' },
   { value: 'em_rota_prazo', label: 'Em rota · prazo' },
   { value: 'em_rota_atrasado', label: 'Em rota · atrasado' },
   { value: 'entregue_prazo', label: 'Entregue no prazo' },

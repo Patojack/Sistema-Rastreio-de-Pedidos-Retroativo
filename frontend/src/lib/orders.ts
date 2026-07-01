@@ -12,7 +12,11 @@ export function applyFilters(pedidos: Pedido[], filters: Filters): Pedido[] {
   const q = filters.search.toLowerCase().trim()
   return pedidos.filter((p) => {
     if (filters.transportadora && p.transportadora.toLowerCase() !== filters.transportadora.toLowerCase()) return false
-    if (filters.status && p.status !== filters.status) return false
+    if (filters.status === 'em_rota') {
+      if (p.status !== 'em_rota_prazo' && p.status !== 'em_rota_atrasado') return false
+    } else if (filters.status && p.status !== filters.status) {
+      return false
+    }
     if (q && !p.numero.toLowerCase().includes(q) && !p.cliente.toLowerCase().includes(q)) return false
     if (filters.dataInicio && p.dataPedido && p.dataPedido < filters.dataInicio) return false
     if (filters.dataFim && p.dataPedido && p.dataPedido > filters.dataFim) return false
